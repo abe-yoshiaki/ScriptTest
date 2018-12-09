@@ -5,14 +5,13 @@ using UnityEngine;
 public class Boss{
 	private int mp = 53;
 
-	public void magic(){
-		this.mp -= 5;
-
-		if (this.mp < 0) {
+	public void magic(int damage){
+		if (this.mp >= damage) {
+			this.mp -= damage;
+			Debug.Log ("魔法攻撃をした。残りMPは" + this.mp + "。");
+		} else {
 			Debug.Log ("MPが足りないため魔法が使えない。");
-			return;
 		}
-		Debug.Log ("魔法攻撃をした。残りMPは" + this.mp + "。");
 	}
 }
 
@@ -36,7 +35,7 @@ public class Test : MonoBehaviour {
 		Boss lastboss = new Boss();
 
 		for (int i = 0; i <= 10; i++) {
-			lastboss.magic();
+			lastboss.magic(5);
 		}
 	}
 
